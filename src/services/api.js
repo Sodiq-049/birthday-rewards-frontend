@@ -1,9 +1,8 @@
 
+
 // Automatically choose backend URL based on environment
 export const API_BASE_URL =
-  import.meta.env.MODE === "production"
-    ? "https://birthday-rewards-backend.onrender.com"
-    : "http://localhost:3000";
+  import.meta.env.VITE_API_URL;
 
 /**
  * Register a new child/parent birthday
