@@ -12,7 +12,7 @@ function AdminDashboard() {
 
     const fetchChildren = async () => {
     try {
-        const res = axios.get(`https://birthday-rewards-backend.onrender.com/admin/children`)
+        const res = axios.get(`https://birthday-rewards-backend.onrender.com/admin/children`, {withCredentials: false})
         console.log("API Response:", res.data) // Debug: check what you actually got
 
         // Ensure we have an array
