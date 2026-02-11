@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000'
+const res = await fetch(`${API_BASE}/admin/children`)
 
 export async function registerBirthday(data) {
   const response = await fetch(`${API_BASE_URL}/registrations`, {

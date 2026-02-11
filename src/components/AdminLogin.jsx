@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { API_BASE_URL } from '../api/config'
 
 function AdminLogin({ onSuccess, onCancel }) {
   const [email, setEmail] = useState('')
@@ -13,7 +14,7 @@ function AdminLogin({ onSuccess, onCancel }) {
 
     try {
       setLoading(true)
-      await axios.post('http://localhost:3000/admin/login', {
+      await axios.post(`${API_BASE_URL}/admin/login`, {
         email,
         password,
       })
