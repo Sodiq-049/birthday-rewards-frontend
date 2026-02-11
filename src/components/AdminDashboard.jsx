@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import "./AdminDashboard.css" // We'll style it
+import "./AdminDashboard.css"
+import { API_BASE_URL } from "../services/api";
 
 function AdminDashboard() {
   const [childrenData, setChildrenData] = useState([])
@@ -12,7 +13,7 @@ function AdminDashboard() {
 
     const fetchChildren = async () => {
     try {
-        const res = axios.get(`https://birthday-rewards-backend.onrender.com/admin/children`, {withCredentials: false})
+         const res = await axios.get(`${API_BASE_URL}/admin/children`);
         console.log("API Response:", res.data) // Debug: check what you actually got
 
         // Ensure we have an array
@@ -28,21 +29,32 @@ function AdminDashboard() {
     }
 
 
-  const claimReward = async (parentId, childIndex) => {
+    const claimReward = async (parentId, childIndex) => {
     try {
-      await axios.patch(`${import.meta.env.VITE_API_URL}/admin/claim/${parentId}/${childIndex}`)
-      // Update local state
-      const updated = [...childrenData]
-      updated.forEach((parent) => {
-        if (parent._id === parentId) {
-          parent.children[childIndex].rewardClaimed = true
-        }
-      })
-      setChildrenData(updated)
+        // Use centralized API base URL
+        const res = await axios.patch(`${API_BASE_URL}/admin/claim/${parentId}/${childIndex}`);
+
+        // Update local state safely
+        setChildrenData((prevData) =>
+        prevData.map((parent) => {
+            if (parent._id === parentId) {
+            const updatedChildren = parent.children.map((child, idx) => {
+                if (idx === childIndex) {
+                return { ...child, rewardClaimed: true };
+                }
+                return child;
+            });
+            return { ...parent, children: updatedChildren };
+            }
+            return parent;
+        })
+        );
+
+        console.log("Reward claimed:", res.data);
     } catch (err) {
-      console.error("Failed to claim reward:", err)
+        console.error("Failed to claim reward:", err.response?.data || err.message);
     }
-  }
+    };
 
   if (loading) return <p>Loading...</p>
 

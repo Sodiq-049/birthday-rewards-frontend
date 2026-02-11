@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { API_BASE_URL } from '../api/config'
+import { API_BASE_URL } from "../services/api"
 
 function AdminLogin({ onSuccess, onCancel }) {
   const [email, setEmail] = useState('')
