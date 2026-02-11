@@ -12,7 +12,7 @@ function AdminDashboard() {
 
     const fetchChildren = async () => {
     try {
-        const res = axios.get(`${import.meta.env.VITE_API_URL}/admin/children`)
+        const res = axios.get(`https://birthday-rewards-backend.onrender.com/admin/children`)
         console.log("API Response:", res.data) // Debug: check what you actually got
 
         // Ensure we have an array
