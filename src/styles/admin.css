@@ -1,0 +1,31 @@
+.admin-login {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.admin-login h3 {
+  margin-bottom: 15px;
+}
+
+.admin-login input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.admin-login button {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-login .error {
+  color: red;
+  margin-bottom: 10px;
+}
