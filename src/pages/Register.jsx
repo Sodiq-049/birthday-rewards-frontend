@@ -19,7 +19,7 @@ function Register() {
       </div>
 
       <img
-        src="/src/image/download.png"
+        src="/download.png"
         alt="The Little Big Kid Company Logo"
       />
 
