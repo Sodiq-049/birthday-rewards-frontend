@@ -84,6 +84,7 @@ function AdminDashboard() {
                 <td>{new Date(child.birthday).toLocaleDateString()}</td>
                 <td>
                   <button
+                    type="button"
                     onClick={() => claimReward(parent._id, idx)}
                     disabled={child.rewardClaimed}
                   >
